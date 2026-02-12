@@ -145,14 +145,15 @@ unsigned int bsize(Balloc pool, void *mem) {
 void bprint(Balloc pool) {
   Block *memPool = pool;
   if (!memPool)
-    printf("NULL pool");
-    printf("\n---allocator State---\n");
-    printf("Pool address:    %p\n", memPool);
-    printf("Memory address:  %p\n", memPool->address);
-    printf("Pool size:       %zu bytes\n", memPool->blockSize);
-    printf("lower:\t%d (2^%d = %zu bytes)\n", memPool->lower, memPool->lower,
+    return;
+  printf("NULL pool");
+  printf("\n---allocator State---\n");
+  printf("Pool address:    %p\n", memPool);
+  printf("Memory address:  %p\n", memPool->address);
+  printf("Pool size:       %zu bytes\n", memPool->blockSize);
+  printf("lower:\t%d (2^%d = %zu bytes)\n", memPool->lower, memPool->lower,
          e2size(memPool->lower));
-    printf("upper:\t%d (2^%d = %zu bytes)\n", memPool->upper, memPool->upper,
+  printf("upper:\t%d (2^%d = %zu bytes)\n", memPool->upper, memPool->upper,
          e2size(memPool->upper));
 
   printf("\n--- free Lists ---\n");
