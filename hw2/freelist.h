@@ -5,9 +5,10 @@
 
 typedef void *FreeList;
 
-// struct 
-typedef struct {
-    FreeL *next;
+// struct for free list nodes
+typedef struct FreeL {
+    struct FreeL *next;
+    size_t *map;
 } FreeL;
 
 // freelistcreate: return free list(s) of order from lower to upper
@@ -25,7 +26,7 @@ extern void freelistdelete(FreeList f, int l, int u);
 // *freelistalloc: return pointer to beginning of new freelist(s) memory
 // f: freelist structure
 // *base: pointer to base of memory structure
-// e: order to free in list
+// e: max order size in freelist
 // l: lower bound of freelist order
 extern void *freelistalloc(FreeList f, void *base, int e, int l);
 
