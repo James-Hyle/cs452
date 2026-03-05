@@ -1,4 +1,5 @@
 run
 Test_cd
 Test_exit
+Test_history
 Test_pwd

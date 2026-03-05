@@ -10,7 +10,7 @@ typedef void *Command;
 extern Command newCommand(T_words words);
 
 extern void execCommand(Command command, Pipeline pipeline, Jobs jobs,
-			int *jobbed, int *eof, int fg);
+			int *jobbed, int *eof, int fg, int fd_in, int fd_out);
 
 extern void freeCommand(Command command);
 extern void freestateCommand();

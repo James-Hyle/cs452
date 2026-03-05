@@ -16,10 +16,12 @@ int main() {
   int eof = 0;
   Jobs jobs = newJobs();
   char *prompt = 0;
-
+  
   if (isatty(fileno(stdin))) {
     using_history();
-    read_history(".history");
+    // clear_history();
+    // printf("%d\n", history_length);
+    // read_history(".history");
     prompt = "$ ";
   } else {
     rl_bind_key('\t', rl_insert);
