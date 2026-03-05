@@ -1,5 +1,1 @@
-cd /etc | pwd
-ls
-cd /workspaces/ubuntu/cs452/hw3
-ls
 exit
