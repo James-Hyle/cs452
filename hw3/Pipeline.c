@@ -59,8 +59,10 @@ static void execute(Pipeline pipeline, Jobs jobs, int *jobbed, int *eof) {
     close(pips[i][1]);
   }
 
-  for (int i = 0; i < n; i++)
-    wait(NULL);
+  if (r->fg) {
+    for (int i = 0; i < n; i++)
+      wait(0);
+  }
 
   if (!*jobbed)
     addJobs(jobs, pipeline);
