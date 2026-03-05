@@ -19,9 +19,6 @@ int main() {
   
   if (isatty(fileno(stdin))) {
     using_history();
-    // clear_history();
-    // printf("%d\n", history_length);
-    // read_history(".history");
     prompt = "$ ";
   } else {
     rl_bind_key('\t', rl_insert);

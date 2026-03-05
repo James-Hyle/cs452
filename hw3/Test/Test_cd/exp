@@ -1,5 +1,8 @@
 run
 Test_cd
+Test_DoublePipe
 Test_exit
 Test_history
+Test_pipe
 Test_pwd
+Test_semicolon

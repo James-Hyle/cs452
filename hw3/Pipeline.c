@@ -1,3 +1,4 @@
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -41,7 +42,7 @@ static void execute(Pipeline pipeline, Jobs jobs, int *jobbed, int *eof) {
   int pips[n - 1][2];
 
   for (int i = 0; i < n - 1; i++) {
-    if (pipe(pips[i]) == -1)
+    if (pipe2(pips[i], O_CLOEXEC) == -1)
       ERROR("pipe() failed");
   }
 

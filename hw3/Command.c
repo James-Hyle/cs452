@@ -65,7 +65,7 @@ BIDEFN(history) {
   HIST_ENTRY **histList = history_list();
 
   int i = 0;
-  printf("displaying current session command history\n");
+  printf("displaying current shell session command history\n");
   while (histList[i] != 0) {
     printf(" %s\n", histList[i]->line);
     i++;
@@ -146,7 +146,7 @@ extern void execCommand(Command command, Pipeline pipeline, Jobs jobs,
 
   if (fg && sizePipeline(pipeline) == 1 && builtin(r, eof, jobs))
     return;
-    
+
   if (!*jobbed) {
     *jobbed = 1;
     addJobs(jobs, pipeline);
