@@ -1,25 +1,29 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 #include <unistd.h>
 
-#define ERR(s) err(s,__FILE__,__LINE__)
-
-static void err(char *s, char *file, int line) {
-  fprintf(stderr,"%s:%d: %s\n",file,line,s);
-  exit(1);
-}
-
 int main() {
-  int fd=open("/etc/group",O_RDONLY);
-  if (fd<0)
+  int fd = open("/dev/Hello", O_RDWR);
+  if (fd < 0)
     ERR("open() failed");
-  enum { size=100 };
-  char buf[size];
-  for (int len; (len=read(fd,buf,size));) {
-    buf[len]=0;
-    printf("%s",buf);
-  }
+
+  char buf[64];
+  ssize_t n;
+
+  if (write(fd, "hello", 5) < 0)
+    ERR("write() failed");
+
+  n = read(fd, buf, sizeof(buf));
+  printf("read() = %zd expected 5\n", n);
+
+  n = read(fd, buf, sizeof(buf));
+  printf("read() = %zd expected 0\n", n);
+
+  n = read(fd, buf, sizeof(buf));
+  printf("read() = %zd expected -1\n", n);
+
   close(fd);
   return 0;
 }
