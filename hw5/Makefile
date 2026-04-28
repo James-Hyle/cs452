@@ -23,8 +23,15 @@ uninstall:
 	sudo rmmod $(module) || true
 	sudo rm -f /dev/$(name) || true
 
+tests:
+	echo -n "hello" > /tmp/test1
+	./Hello /tmp/test1
+
 TryHello: TryHello.c
 	gcc -o $@ $< -Wall -g
 
+Hello: Hello.c
+	gcc -o $@ $< -Wall -g
+	
 try: TryHello
 	./$<

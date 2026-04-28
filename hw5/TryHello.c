@@ -11,7 +11,7 @@ static void err(char *s, char *file, int line) {
 }
 
 int main() {
-  int fd=open("/etc/passwd",O_RDWR);
+  int fd=open("/etc/group",O_RDONLY);
   if (fd<0)
     ERR("open() failed");
   enum { size=100 };
