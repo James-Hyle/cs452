@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(void) {
-  char buf[100];
+  char buf[3];
   ssize_t n;
 
   File f = {
@@ -15,7 +15,10 @@ int main(void) {
   };
 
   n = scanner_read(&f, buf, sizeof(buf));
-  printf("read() = %zd expected 5\n", n);
+  printf("read() = %zd expected 3\n", n); 
+
+  n = scanner_read(&f, buf, sizeof(buf));
+  printf("read() = %zd expected 2\n", n);
 
   n = scanner_read(&f, buf, sizeof(buf));
   printf("read() = %zd expected 0\n", n);

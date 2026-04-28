@@ -2,20 +2,27 @@
 #include <stdio.h>
 
 int main(void) {
-  char buf[100];
+  char buf[64];
   ssize_t n;
+  char seps[] = {'\0'};
 
   File f = {
-      .seps = (char *)defaults,
-      .sep_len = sizeof(defaults),
-      .data = "hello",
+      .seps = seps,
+      .sep_len = 1,
+      .data = "ab\0cd",
       .data_len = 5,
       .pos = 0,
       .eot = 0,
   };
 
   n = scanner_read(&f, buf, sizeof(buf));
-  printf("read() = %zd expected 5\n", n);
+  printf("read() = %zd expected 2\n", n);
+
+  n = scanner_read(&f, buf, sizeof(buf));
+  printf("read() = %zd expected 0\n", n);
+
+  n = scanner_read(&f, buf, sizeof(buf));
+  printf("read() = %zd expected 2\n", n);
 
   n = scanner_read(&f, buf, sizeof(buf));
   printf("read() = %zd expected 0\n", n);

@@ -8,14 +8,26 @@ int main(void) {
   File f = {
       .seps = (char *)defaults,
       .sep_len = sizeof(defaults),
-      .data = "hello",
-      .data_len = 5,
+      .data = "foo bar baz",
+      .data_len = 11,
       .pos = 0,
       .eot = 0,
   };
 
   n = scanner_read(&f, buf, sizeof(buf));
-  printf("read() = %zd expected 5\n", n);
+  printf("read() = %zd expected 3\n", n);
+
+  n = scanner_read(&f, buf, sizeof(buf));
+  printf("read() = %zd expected 0\n", n);
+
+  n = scanner_read(&f, buf, sizeof(buf));
+  printf("read() = %zd expected 3\n", n);
+
+  n = scanner_read(&f, buf, sizeof(buf));
+  printf("read() = %zd expected 0\n", n);
+
+  n = scanner_read(&f, buf, sizeof(buf));
+  printf("read() = %zd expected 3\n", n);
 
   n = scanner_read(&f, buf, sizeof(buf));
   printf("read() = %zd expected 0\n", n);

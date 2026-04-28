@@ -2,14 +2,14 @@
 #include <stdio.h>
 
 int main(void) {
-  char buf[100];
+  char buf[64];
   ssize_t n;
 
   File f = {
       .seps = (char *)defaults,
       .sep_len = sizeof(defaults),
-      .data = "hello",
-      .data_len = 5,
+      .data = "  hello  ",
+      .data_len = 9,
       .pos = 0,
       .eot = 0,
   };
