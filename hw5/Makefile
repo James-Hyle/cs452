@@ -11,6 +11,8 @@ KBUILD_CFLAGS+=-DDEVNAME='"$(name)"'
 
 modules clean: ; $(MAKE) -C $(KDIR) M=$(PWD) $@
 
+clean: ; rm -f $(prog) *.o *.d *.i
+
 install: $(module)
 	sudo rmmod $(module) || true
 	sudo insmod $(module)
