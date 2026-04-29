@@ -1,1 +1,0 @@
-savedcmd_Hello.ko := ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T /usr/src/linux-headers-6.17.0-22-generic/scripts/module.lds -o Hello.ko Hello.o Hello.mod.o .module-common.o

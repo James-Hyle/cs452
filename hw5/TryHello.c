@@ -16,7 +16,7 @@ int main() {
   if (fd < 0)
     ERR("open() failed");
 
-  char buf[64];
+  char buf[100];
   ssize_t n;
 
   if (write(fd, "hello", 5) < 0)

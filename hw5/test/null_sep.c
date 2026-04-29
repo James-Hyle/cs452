@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(void) {
-  char buf[64];
+  char buf[100];
   ssize_t n;
   char seps[] = {'\0'};
 

@@ -86,16 +86,13 @@ static ssize_t read(struct file *filp, char *buf, size_t count, loff_t *f_pos) {
     return 0;
   }
 
-  // Skip leading seps
   while (file->pos < file->data_len && is_sep(file, file->data[file->pos])) {
     file->pos++;
   }
 
-  // No token found
   if (file->pos >= file->data_len)
     return -1;
 
-  // Collect up to count non-separator bytes
   start = file->pos;
   n = 0;
   while (file->pos < file->data_len && !is_sep(file, file->data[file->pos]) &&
@@ -104,7 +101,6 @@ static ssize_t read(struct file *filp, char *buf, size_t count, loff_t *f_pos) {
     n++;
   }
 
-  /* If token ended (separator hit or data exhausted), signal EOT next call */
   if (file->pos >= file->data_len || is_sep(file, file->data[file->pos]))
     file->eot = 1;
 
